@@ -11,7 +11,7 @@ public:
     // Constructor
     Point(double x = 0, double y = 0) : x(x), y(y) {}
 
-    // Distance operator: p1 - p2
+    // Distance operator
     double operator-(const Point& other) const {
         return sqrt(pow(other.x - x, 2) + pow(other.y - y, 2));
     }
@@ -26,38 +26,38 @@ public:
         return !(*this == other);
     }
 
-    // Midpoint operator: p1 / p2
+    // Midpoint operator
     Point operator/(const Point& other) const {
         return Point((x + other.x) / 2.0, (y + other.y) / 2.0);
     }
 
-    // Pre-increment: ++p  (increment x)
+    // Pre-increment
     Point& operator++() {
         x++;
         return *this;
     }
 
-    // Post-increment: p++  (increment y)
+    // Post-increment
     Point operator++(int) {
         Point temp = *this;
         y++;
         return temp;
     }
 
-    // Pre-decrement: --p  (decrement x)
+    // Pre-decrement
     Point& operator--() {
         x--;
         return *this;
     }
 
-    // Post-decrement: p--  (decrement y)
+    // Post-decrement
     Point operator--(int) {
         Point temp = *this;
         y--;
         return temp;
     }
 
-    // Index operator: p[0] = x, p[1] = y
+    // Index operator
     double& operator[](int index) {
         if (index == 0) return x;
         if (index == 1) return y;
@@ -70,7 +70,7 @@ public:
         throw out_of_range("Index must be 0 or 1");
     }
 
-    // Output stream operator: cout << p
+    // Output stream operator
     friend ostream& operator<<(ostream& os, const Point& p) {
         os << "(" << p.x << ", " << p.y << ")";
         return os;
