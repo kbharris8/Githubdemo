@@ -66,10 +66,7 @@ bool playerSeen(const vector<string> &grid) {
     return false;
 }
 
-// Doors: base has uppercase letters 'A','B',... as door groups.
-// Switches: base has lowercase letters 'a','b',... as switch groups.
-// doorOpen[group] == true => door cells act like empty space in grid.
-// doorOpen[group] == false => door cells act like walls ('#') in grid.
+
 void applyDoorStates(vector<string> &grid,
                      const vector<string> &base,
                      const map<char,bool> &doorOpen)
@@ -324,7 +321,7 @@ bool runLevel(const Level &level) {
 
     bool running = true;
     while (running) {
-        // Rebuild display grid from base + dynamic entities
+        
         vector<string> display = grid;
         display[playerR][playerC] = '@';
         for (const auto &g : guards) {
@@ -360,7 +357,7 @@ bool runLevel(const Level &level) {
                 continue;
             }
             inspectTile(rr, cc, base, grid, guards, playerR, playerC, doorOpen);
-            // Inspect does NOT cost a turn: skip guard movement and sight checks
+           
             continue;
         }
 
@@ -393,7 +390,7 @@ bool runLevel(const Level &level) {
 
         if (dest == '#') {
             cout << "You bump into a wall.\n";
-            continue; // no turn spent
+            continue; // 
         }
         if (dest == '<' || dest == '>' || dest == '^' || dest == 'v') {
             cout << "You ran into a guard. You lose.\n";
@@ -408,7 +405,7 @@ bool runLevel(const Level &level) {
         playerR = nr;
         playerC = nc;
 
-        // If player steps on a switch, toggle doors
+        
         if (inBounds(playerR, playerC, base)) {
             char b = base[playerR][playerC];
             if (islower(b)) {
@@ -416,7 +413,7 @@ bool runLevel(const Level &level) {
             }
         }
 
-        // After player moves, check if seen
+        
         temp = grid;
         temp[playerR][playerC] = '@';
         for (const auto &g : guards) {
@@ -427,10 +424,10 @@ bool runLevel(const Level &level) {
             return false;
         }
 
-        // Move guards
+        
         updateGuards(grid, guards, base, doorOpen);
 
-        // Rebuild temp and check sight again
+    
         temp = grid;
         temp[playerR][playerC] = '@';
         for (const auto &g : guards) {
