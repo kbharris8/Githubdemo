@@ -8,8 +8,8 @@ using namespace std;
 
 struct Guard {
     int r, c;
-    char dir;   // '<', '>', '^', 'v'
-    bool patrol; // false = line guard (flip), true = area guard (clockwise)
+    char dir;   
+    bool patrol; 
 };
 
 struct Level {
